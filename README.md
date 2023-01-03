@@ -23,3 +23,9 @@ cd csv-files-data/frontend
 ```
 
 You can navigate back to the root directory at any time by using the cd .. command.
+
+To run both services using Docker, use the following command:
+
+```
+docker-compose up
+```
