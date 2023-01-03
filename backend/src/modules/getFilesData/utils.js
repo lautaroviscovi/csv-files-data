@@ -54,7 +54,7 @@ export const sanitizeData = (data) => {
       const columnName = headers[j]
       const columnValidator = columnValidators[columnName] || (() => true)
 
-      if (columnValidator(values[j])) lines[headers[j]] = values[j]
+      if (columnValidator(values[j])) lines[headers[j]] = Number(values[j]) || values[j]
     }
     filesDataSet.lines.push(lines)
   }

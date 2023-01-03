@@ -14,8 +14,10 @@ export class FilesHandler {
   }
 
   static async getFilesData (request, response = Response) {
+    const fileName = request.query.fileName
+
     try {
-      const data = await FilesController.getFilesData()
+      const data = await FilesController.getFilesData(fileName)
       response.status(200).json(data)
     } catch (error) {
       response.status(500).json(error)

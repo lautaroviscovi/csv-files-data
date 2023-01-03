@@ -13,16 +13,21 @@ export class FilesController {
     }
   }
 
-  static async getFilesData () {
+  static async getFilesData (fileName) {
     try {
       const files = []
       const dataList = await FilesService.getList()
-      for (const file of dataList.files) {
-        const data = await FilesService.getFilesData(file)
-        files.push(sanitizeData(data))
+      if (fileName === undefined) {
+        for (const file of dataList.files) {
+          const data = await FilesService.getFilesData(file)
+          files.push(sanitizeData(data))
+        }
+        const filesData = files.filter(file => file !== null)
+        return filesData
       }
-      const filesData = files.filter(file => file !== null)
-      return filesData
+      const data = await FilesService.getFilesData(fileName)
+      files.push(sanitizeData(data))
+      return files
     } catch (error) {
       throw error(error)
     }
